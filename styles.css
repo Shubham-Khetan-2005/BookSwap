@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-item{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.hero{
+    padding: 1rem;
+}
