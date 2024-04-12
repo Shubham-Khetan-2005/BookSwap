@@ -11,6 +11,82 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <!-- <script src="index.js"></script> -->
+    <script src="https://apis.google.com/js/api.js"></script>
+
+    <style>
+      * {box-sizing: border-box}
+      body {font-family: "Lato", sans-serif;}
+      
+      /* Style the tab */
+      .tab {
+        float: left;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        width: 30%;
+        height: 300px;
+      }
+      
+      /* Style the buttons inside the tab */
+      .tab button {
+        display: block;
+        background-color: inherit;
+        color: black;
+        padding: 22px 16px;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+      
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+      
+      /* Create an active/current "tab button" class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+      
+      /* Style the tab content */
+      .tabcontent {
+        float: left;
+        padding: 0px 12px;
+        border: 1px solid #ccc;
+        width: 70%;
+        border-left: none;
+        height: 300px;
+      }
+
+      .tab {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tablinks {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .tablinks:hover {
+            background-color: #ddd;
+        }
+        .tabcontent {
+            padding: 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .tabcontent img {
+            max-width: 100%; /* Ensure image width does not exceed container */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+      </style>
 </head>
 
 <body class="font-[Poppins] bg-gradient-to-t from-[#359dd8] to-[#becce5] h-screen">
@@ -56,7 +132,7 @@
               </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"  style="padding: 1rem;">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">View notifications</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -65,31 +141,36 @@
               </button>
       
               <!-- Profile dropdown -->
-              <div class="relative ml-3">
+              
+              <div class="relative inline-block text-left">
                 <div>
-                  <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                    <span class="absolute -inset-1.5"></span>
-                    <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                    Your Account
+                    <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
                   </button>
                 </div>
-      
-                <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                  <!-- Active: "bg-gray-100", Not Active: "" -->
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+              
+                <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                  <div class="py-1" role="none">
+                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Name</a>
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Number</a>
+                  </div>
+                  <!-- <div class="py-1" role="none">
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Archive</a>
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Move</a>
+                  </div>
+                  <div class="py-1" role="none">
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
+                  </div> -->
+                  <div class="py-1" role="none">
+                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Sign Out</a>
+                  </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -105,36 +186,74 @@
     </center>
     </section>
 
-    <!-- <div class="... flex items-center justify-center"> -->
-        <!-- <p>Welcome<br>
-        <h3>Unlock your Knowledge with </h3><h1>LearnQuest<br></h1><h3>Where Knowledge meets Discovery!</h3></p> -->
-        <!-- <div class="mb-8"> -->
-            <!-- <img class="w-16 cursor-pointer" src="./images/welcome.jpg" alt="...">
-            
-            <h1 class="text-3xl font-bold">Welcome to LearnQuest</h1>
-            <p class="mt-4">Start your journey of learning and discovery today.</p> -->
+    <section class="authentication" style="padding: 4rem;">
+      <center>
+        <div id="signin-button">
+          <p class="text-2xl" style="width: 35%; line-height: 2rem;">Here sign-in and Login button will be created</p>
+        </div>
+    </center>
+    </section>
 
-        <!-- </div>
-        <div><hr class="mt-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mt-8">Our Mission</h2>
-            <p class="mt-4">At LearnQuest, we're dedicated to providing high-quality education...</p>
+    <!-- <section >
+      <div class="flex justify-between gap-3">
+        <div class="w-1/4 ml-6">
+            <img src="images/Richdad.webp" alt="Image 1" class="w-full h-auto">
         </div>
-        <hr class="mt-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mt-8">Our Courses</h2>
-            <p class="mt-4">Explore our wide range of courses designed to...</p>
+        <div class="w-1/4">
+            <img src="images/Richdad.webp" alt="Image 2" class="w-full h-auto">
         </div>
-        <hr class="mt-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mt-8">Get Started</h2>
-            <p class="mt-4">Join our community of learners and...</p>
+        <div class="w-1/4 mr-6">
+            <img src="images/Richdad.webp" alt="Image 3" class="w-full h-auto">
         </div>
+    </div>
+    </section> -->
+
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Fiction')">Fiction</button>
+      <button class="tablinks" onclick="openCity(event, 'Non-Fiction')">Non-Fiction</button>
+      <button class="tablinks" onclick="openCity(event, 'Self-Help')">Self-Help</button>
+    </div>
     
-      </div> -->
-   
+    <div id="Fiction" class="tabcontent">
+      <h3>Fiction</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <img src="images/Fiction.jpeg" alt="Image 1" class="w-full h-auto">
 
+              <!-- Image 2 -->
+          <img src="images/Fiction.jpeg" alt="Image 2" class="w-full h-auto">
 
+              <!-- Image 3 -->
+          <img src="images/Fiction.jpeg" alt="Image 3" class="w-full h-auto">
+        </div>
+    </div>
+    
+    <div id="Non-Fiction" class="tabcontent">
+      <h3>Non-Fiction</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <img src="images/Non-Fiction.jpg" alt="Image 1" class="w-full h-auto">
+
+            <!-- Image 2 -->
+        <img src="images/Non-Fiction.jpg" alt="Image 2" class="w-full h-auto">
+
+            <!-- Image 3 -->
+        <img src="images/Non-Fiction.jpg" alt="Image 3" class="w-full h-auto">
+      </div>
+    </div>
+    
+    <div id="Self-Help" class="tabcontent">
+      <h3>Self-Help</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <img src="images/Richdad.webp" alt="Image 1" class="w-full h-auto">
+
+              <!-- Image 2 -->
+          <img src="images/Richdad.webp" alt="Image 2" class="w-full h-auto">
+
+              <!-- Image 3 -->
+          <img src="images/Richdad.webp" alt="Image 3" class="w-full h-auto">
+        </div>
+    </div>
+
+    
 
     <script>
         const navLinks = document.querySelector('.nav-links')
@@ -143,6 +262,119 @@
             navLinks.classList.toggle('top-[9%]')
         }
     </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+            // Automatically open the "Fiction" tab when the page loads
+            openCity(event, 'Fiction');
+        });
+
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const menuButton = document.getElementById("menu-button");
+      const menu = document.querySelector("[role='menu']");
+
+      // Function to toggle the visibility of the dropdown menu
+      const toggleMenu = () => {
+        const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
+        menuButton.setAttribute("aria-expanded", !expanded); // Toggle aria-expanded attribute
+
+        if (!expanded) {
+          // Show the menu with animation
+          menu.classList.remove("hidden");
+          menu.classList.add("transition", "ease-out", "duration-100", "transform", "opacity-100", "scale-100");
+        } else {
+          // Hide the menu with animation
+          menu.classList.remove("transition", "ease-out", "duration-100", "transform", "opacity-100", "scale-100");
+          menu.classList.add("transition", "ease-in", "duration-75", "transform", "opacity-0", "scale-95");
+
+          // After animation completes, hide the menu
+          setTimeout(() => {
+            menu.classList.add("hidden");
+          }, 75); // Wait for the duration of the 'ease-in' transition
+        }
+      };
+
+      // Event listener for the menu button click
+      menuButton.addEventListener("click", () => {
+        toggleMenu();
+
+        // Close the dropdown menu if clicked outside of it
+        const clickOutsideMenu = (event) => {
+          if (!menu.contains(event.target) && event.target !== menuButton) {
+            toggleMenu();
+            document.removeEventListener("click", clickOutsideMenu);
+          }
+        };
+
+        document.addEventListener("click", clickOutsideMenu);
+      });
+
+      // Event listener for keyboard interaction to close the menu on ESC key
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menu.classList.contains("hidden") === false) {
+          toggleMenu();
+        }
+      });
+    });
+
+
+</script>
+
+
+<script>
+  function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      // You can handle the user data or redirect to another page
+  }
+
+  function onFailure(error) {
+      console.error('Google Sign In failed: ', error);
+  }
+
+  function renderButton() {
+      gapi.signin2.render('signin-button', {
+          'scope': 'profile email',
+          'width': 200,
+          'height': 40,
+          'longtitle': true,
+          'theme': 'light',
+          'onsuccess': onSuccess,
+          'onfailure': onFailure
+      });
+  }
+
+  // Load Google OAuth 2.0 client library
+  function handleClientLoad() {
+      gapi.load('auth2', function() {
+          gapi.auth2.init({
+              client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com'
+          });
+          renderButton();
+      });
+  }
+
+  // Initialize the Google OAuth 2.0 client library
+  handleClientLoad();
+</script>
 </body>
 
 </html>
