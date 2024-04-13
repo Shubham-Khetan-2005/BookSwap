@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style></style>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    <!-- <script src="index.js"></script> -->
+    <script src="main.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
 
     <style>
@@ -78,7 +83,7 @@
         }
         .tabcontent {
             padding: 16px;
-            background-color: #fff;
+            background-color: #f1f1f1;
             border: 1px solid #ddd;
         }
         .tabcontent img {
@@ -87,6 +92,7 @@
         }
 
       </style>
+
 </head>
 
 <body class="font-[Poppins] bg-gradient-to-t from-[#359dd8] to-[#becce5] h-screen">
@@ -132,7 +138,7 @@
               </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"  style="padding: 1rem;">
+              <button type="button" class="relative rounded-full bg-gray-800 p-3 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"  style="padding: 1rem;">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">View notifications</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -208,84 +214,212 @@
     </div>
     </section> -->
 
-    <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Fiction')">Fiction</button>
-      <button class="tablinks" onclick="openCity(event, 'Non-Fiction')">Non-Fiction</button>
-      <button class="tablinks" onclick="openCity(event, 'Self-Help')">Self-Help</button>
+    <!-- <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Fiction')">Fiction</button>
+      <button class="tablinks" onclick="openTab(event, 'NonFiction')">NonFiction</button>
+      <button class="tablinks" onclick="openTab(event, 'SelfHelp')">SelfHelp</button>
     </div>
     
     <div id="Fiction" class="tabcontent">
-      <h3>Fiction</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <img src="images/Fiction.jpeg" alt="Image 1" class="w-full h-auto">
+      <h3>Fiction</h3> -->
+        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="fictionContent">
+          <img src="images/Fiction.jpeg" alt="Image 1" class="w-full h-auto book-item">
 
-              <!-- Image 2 -->
           <img src="images/Fiction.jpeg" alt="Image 2" class="w-full h-auto">
 
-              <!-- Image 3 -->
           <img src="images/Fiction.jpeg" alt="Image 3" class="w-full h-auto">
-        </div>
-    </div>
+        </div> -->
+    <!-- </div>
     
-    <div id="Non-Fiction" class="tabcontent">
+    <div id="NonFiction" class="tabcontent">
       <h3>Non-Fiction</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="nonFictionContent">
         <img src="images/Non-Fiction.jpg" alt="Image 1" class="w-full h-auto">
 
-            <!-- Image 2 -->
         <img src="images/Non-Fiction.jpg" alt="Image 2" class="w-full h-auto">
 
-            <!-- Image 3 -->
         <img src="images/Non-Fiction.jpg" alt="Image 3" class="w-full h-auto">
       </div>
     </div>
     
-    <div id="Self-Help" class="tabcontent">
+    <div id="SelfHelp" class="tabcontent">
       <h3>Self-Help</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="selfHelpContent">
           <img src="images/Richdad.webp" alt="Image 1" class="w-full h-auto">
 
-              <!-- Image 2 -->
+
           <img src="images/Richdad.webp" alt="Image 2" class="w-full h-auto">
 
-              <!-- Image 3 -->
+
           <img src="images/Richdad.webp" alt="Image 3" class="w-full h-auto">
         </div>
-    </div>
+    </div> -->
 
+
+    <div class="container mt-5 pr-8 pl-8">
+      <!-- Horizontal Tabs -->
+      <ul class="nav nav-tabs justify-content-center" style="width: 100%;">
+        <li class="nav-item col-sm-4 text-center">
+          <a class="nav-link active border border-white" style="color: #000000;" data-bs-toggle="tab" href="#Fiction">Fiction</a>
+        </li>
+        <li class="nav-item col-sm-4 text-center">
+          <a class="nav-link border border-white" style="color: #000000;" data-bs-toggle="tab" href="#NonFiction">Non-Fiction</a>
+        </li>
+        <li class="nav-item col-sm-4 text-center">
+          <a class="nav-link border border-white" style="color: #000000;" data-bs-toggle="tab" href="#SelfHelp">Self-Help</a>
+        </li>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content mt-3">
+          <!-- Fiction Tab Content -->
+          <div id="Fiction" class="tab-pane fade show active">
+              
+              <div class="row row-cols-1 row-cols-md-3 g-4" id="fictionContent">
+              </div>
+          </div>
+
+          <!-- Non-Fiction Tab Content -->
+          <div id="NonFiction" class="tab-pane fade">
+              
+              <div class="row row-cols-1 row-cols-md-3 g-4" id="nonFictionContent">
+                  <div class="col">
+                      <img src="images/Non-Fiction.jpg" alt="Image 1" class="img-fluid">
+                  </div>
+                  <div class="col">
+                      <img src="images/Non-Fiction.jpg" alt="Image 2" class="img-fluid">
+                  </div>
+                  <div class="col">
+                      <img src="images/Non-Fiction.jpg" alt="Image 3" class="img-fluid">
+                  </div>
+              </div>
+          </div>
+
+          <!-- Self-Help Tab Content -->
+          <div id="SelfHelp" class="tab-pane fade">
+              
+              <div class="row row-cols-1 row-cols-md-3 g-4" id="selfHelpContent">
+                  <div class="col">
+                      <img src="images/Richdad.webp" alt="Image 1" class="img-fluid">
+                  </div>
+                  <div class="col">
+                      <img src="images/Richdad.webp" alt="Image 2" class="img-fluid">
+                  </div>
+                  <div class="col">
+                      <img src="images/Richdad.webp" alt="Image 3" class="img-fluid">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <!-- Modal HTML structure -->
+    <div id="bookModal" class="fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-xl w-full flex flex-col justify-center items-center">
+        <div class="flex justify-between w-full mb-4">
+          <h2 id="modalBookTitle" class="text-xl font-semibold"></h2>
+          <button class="text-gray-500 hover:text-gray-700" onclick="closeModal()">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="flex justify-center items-center mb-4">
+          <div class="w-1/2 pr-4">
+            <img id="modalBookImage" src="" alt="Book Image" class="w-full h-auto rounded-lg shadow-md">
+          </div>
+          <div class="w-1/2 flex flex-col">
+            <p id="modalBookAuthor" class="text-gray-600"></p>
+            <p id="modalBookPublisher" class="text-gray-600"></p>
+            <p id="modalBookPrice" class="text-gray-600"></p>
+            <div id="modalBookRatings" class="text-gray-600"></div>
+          </div>
+        </div>
+        <div>
+          <button onclick="buyNow()" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600">Buy Now</button>
+          <button onclick="addToCart()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
     
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
     <script>
-        const navLinks = document.querySelector('.nav-links')
-        function onToggleMenu(e){
-            e.name = e.name === 'menu' ? 'close' : 'menu'
-            navLinks.classList.toggle('top-[9%]')
-        }
+      const navLinks = document.querySelector('.nav-links')
+      function onToggleMenu(e) {
+        e.name = e.name === 'menu' ? 'close' : 'menu'
+        navLinks.classList.toggle('top-[9%]')
+      }
     </script>
 
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function() {
-            // Automatically open the "Fiction" tab when the page loads
-            openCity(event, 'Fiction');
-        });
+      // Automatically open the "Fiction" category tab when the page loads
+      openTab(event, 'Fiction');
+  });
 
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+  // Function to open tab content for different categories
+  function openTab(evt, categoryName) {
+      // Hide all tab content
+      const tabContents = document.querySelectorAll('.tabcontent');
+      tabContents.forEach(content => {
+          content.style.display = 'none';
+      });
+
+      // Deactivate all tab links
+      const tabLinks = document.querySelectorAll('.tablinks');
+      tabLinks.forEach(link => {
+          link.classList.remove('active');
+      });
+
+      // Show the selected category tab content
+      const selectedTab = document.getElementById(categoryName);
+      if (selectedTab) {
+          selectedTab.style.display = 'block';
+
+          // Adjust the height of the category content div based on its images
+          adjustTabContentHeight(selectedTab);
+      }
+
+      // Activate the clicked tab link
+      evt.currentTarget.classList.add('active');
   }
-  
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-  </script>
+
+  // Function to adjust the height of tab content based on its images
+  function adjustTabContentHeight(tabContent) {
+      // Get all images within the tab content
+      const images = tabContent.querySelectorAll('img');
+
+      // Find the maximum height among all images
+      let maxHeight = 0;
+      images.forEach(img => {
+          if (img.offsetHeight > maxHeight) {
+              maxHeight = img.offsetHeight;
+          }
+      });
+
+      // Set the height of the tab content to the maximum image height
+      tabContent.style.height = `${maxHeight}px`;
+  }
+
+  function equalizeTabHeights(tabContent) {
+        // Get the height of the tab content
+        const contentHeight = tabContent.offsetHeight;
+
+        // Set the height of all tab links to match the tab content height
+        const tabLinks = document.querySelectorAll('.tablinks');
+        tabLinks.forEach(link => {
+            link.style.height = `${contentHeight}px`;
+        });
+    }
+</script> -->
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -337,43 +471,6 @@
     });
 
 
-</script>
-
-
-<script>
-  function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      // You can handle the user data or redirect to another page
-  }
-
-  function onFailure(error) {
-      console.error('Google Sign In failed: ', error);
-  }
-
-  function renderButton() {
-      gapi.signin2.render('signin-button', {
-          'scope': 'profile email',
-          'width': 200,
-          'height': 40,
-          'longtitle': true,
-          'theme': 'light',
-          'onsuccess': onSuccess,
-          'onfailure': onFailure
-      });
-  }
-
-  // Load Google OAuth 2.0 client library
-  function handleClientLoad() {
-      gapi.load('auth2', function() {
-          gapi.auth2.init({
-              client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com'
-          });
-          renderButton();
-      });
-  }
-
-  // Initialize the Google OAuth 2.0 client library
-  handleClientLoad();
 </script>
 </body>
 
