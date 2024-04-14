@@ -1,25 +1,67 @@
-url = "https://www.googleapis.com/books/v1/volumes?q=+subject:fiction";
-jsonData = {};
-fetch(url)
+const apiUrl = "https://www.googleapis.com/books/v1/volumes";
+const maxResults = 40;
+
+const urlFiction = `${apiUrl}?q=subject:fiction&maxResults=${maxResults}`;
+fetch(urlFiction)
   .then((response) => response.json())
   .then((json) => {
-    jsonData = json["items"];
-    str = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="fictionContent">`;
-    for (let i = 0; i < 3; i++) {
-      str += `<img src="${
-        jsonData[i]["volumeInfo"]["imageLinks"]["thumbnail"]
-      }" alt="Image ${i + 1}" id="img${i}" class="w-full h-auto book-item">`;
-    }
-    str += `</div>`;
-
-    document.getElementById("Fiction").innerHTML = str;
-    for (let i = 0; i < 3; i++) {
-      const image = document.getElementById(`img${i}`);
-      image.addEventListener("click", () => {
-        openModal(jsonData[i])
-      });
-    }
+    const jsonData = json["items"];
+    displayBooks("Fiction", "fictionContent", jsonData);
   });
+
+const urlHistory = `${apiUrl}?q=subject:history&maxResults=${maxResults}`;
+fetch(urlHistory)
+  .then((response) => response.json())
+  .then((json) => {
+    const jsonData = json["items"];
+    displayBooks("History", "historyContent", jsonData);
+  });
+
+const urlSelfHelp = `${apiUrl}?q=subject:self-help&maxResults=${maxResults}`;
+fetch(urlSelfHelp)
+  .then((response) => response.json())
+  .then((json) => {
+    const jsonData = json["items"];
+    displayBooks("SelfHelp", "selfHelpContent", jsonData);
+  });
+
+// Function to display books in the specified tabId container
+function displayBooks(subject, tabId, jsonData) {
+  const container = document.getElementById(tabId);
+  if (!container) {
+    console.error(`Container not found for ${subject}`);
+    return;
+  }
+
+  let str = `<div class="grid grid-cols-1 md:grid-cols-4 gap-8 pl-16 pr-16 w-full" id="${tabId}Content">`;
+  let bookCount = 0;
+
+  for (let i = 0; i < jsonData.length && bookCount < 4; i++) {
+    const book = jsonData[i];
+    const saleInfo = book["saleInfo"];
+    if (saleInfo && saleInfo["saleability"] === "FOR_SALE") {
+      str += `<img src="${
+        book["volumeInfo"]["imageLinks"]["thumbnail"]
+    }" alt="Image ${bookCount + 1}" id="img${bookCount}" class="w-full h-auto book-item">`;
+      bookCount++;
+    }
+  }
+  str += `</div>`;
+
+  container.innerHTML = str;
+
+  // Isme problem hai
+  for (bookCount = 0; bookCount<4; bookCount++) {
+    if (saleInfo && saleInfo["saleability"] === "FOR_SALE") {
+        const image = document.getElementById(`img${bookCount}`);
+        if (image) {
+        image.addEventListener("click", () => {
+            openModal(jsonData[bookCount]);
+        });
+        }
+    }
+  }
+}
 
   function authors(data) {
     if (data && data.volumeInfo.authors) {
@@ -113,9 +155,6 @@ function openModal(data) {
     const modal = document.getElementById("bookModal");
     modal.classList.remove("hidden");
   }
-  
-  
-
 
 // Function to close the modal
 function closeModal() {
