@@ -52,6 +52,8 @@ function displayBooks(subject, tabId, jsonData) {
 
   // Isme problem hai
   for (bookCount = 0; bookCount<4; bookCount++) {
+    const book = jsonData[i];
+    const saleInfo = book["saleInfo"];
     if (saleInfo && saleInfo["saleability"] === "FOR_SALE") {
         const image = document.getElementById(`img${bookCount}`);
         if (image) {
@@ -177,4 +179,5 @@ function handleBookClick(event) {
     openModal();
   }
 }
+
 
