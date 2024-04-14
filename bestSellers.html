@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
     <script src="https://apis.google.com/js/api.js"></script>
     <title>Browse Books</title>
 </head>
@@ -146,67 +146,53 @@
 
     
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const googleBooksApiUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:bestsellers&maxResults=40';
-    const nytBooksApiUrl = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=YOUR_KEY';
-    
-    const loadBestsellers = async () => {
-        try {
-            const [googleResponse, nytResponse] = await Promise.all([
-                fetch(googleBooksApiUrl),
-                fetch(nytBooksApiUrl)
-            ]);
-
-            const [googleData, nytData] = await Promise.all([
-                googleResponse.json(),
-                nytResponse.json()
-            ]);
-
-            const googleBooks = googleData.items || [];
-            const nytBooks = nytData.results.books || [];
-
-            const bestsellers = [...googleBooks, ...nytBooks]; // Combine books from both APIs
-            displayBestsellers(bestsellers);
-        } catch (error) {
-            console.error('Error fetching bestseller books:', error);
-            alert('Failed to fetch bestseller books. Please try again.');
+    // Function to fetch bestseller books from New York Times API
+    async function fetchBestsellers() {
+            const apiKey = 'o8tZcx8xJvwVUAOASSG042YA82pLZDcA';
+            const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`);
+            const data = await response.json();
+            return data.results.books;
         }
-    };
 
-    const displayBestsellers = (books) => {
-        const bestsellersContainer = document.getElementById('bestsellers');
-        bestsellersContainer.innerHTML = '';
+        // Function to fetch book details from Google Books API
+        async function fetchBookDetails(isbn) {
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
+            const data = await response.json();
+            return data.items[0].volumeInfo;
+        }
 
-        books.forEach(book => {
-            let title, authors, thumbnail;
+        // Function to render bestseller books
+        async function renderBestsellers() {
+            const bestsellers = await fetchBestsellers();
 
-            // Extract book information based on API source
-            if (book.volumeInfo) {
-                title = book.volumeInfo.title;
-                authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author';
-                thumbnail = book.volumeInfo.imageLinks?.thumbnail || '';
-            } else if (book.title) {
-                title = book.title;
-                authors = book.author || 'Unknown Author';
-                thumbnail = book.book_image || '';
-            }
+            const container = document.getElementById('bestsellers');
+            container.innerHTML = ''; // Clear previous content
+            for(let i=0;i<10;i++){
+                book=bestsellers[i];
+                const details = await fetchBookDetails(book.isbns[0].isbn13);
 
-            const bookCard = `
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded shadow';
+
+                card.innerHTML = `
                 <div class="bg-white border rounded-lg overflow-hidden shadow-md">
-                    <img src="${thumbnail}" alt="${title}" class="w-full h-48 object-cover">
+                    <img src="${details.imageLinks.thumbnail}" alt="${details.title}" class="w-full h-48 object-cover">
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold mb-2">${title}</h3>
-                        <p class="text-sm text-gray-700 mb-2">By ${authors}</p>
+                        <h3 class="text-lg font-semibold mb-2">${details.title}</h3>
+                        <p class="text-sm text-gray-700 mb-2">By ${details.authors}</p>
+                        <a href="${details.previewLink}" target="_blank"
+                                class="block text-
+                                blue-500 font-semibold hover:underline">Preview</a>
                     </div>
                 </div>
             `;
 
-            bestsellersContainer.innerHTML += bookCard;
-        });
-    };
+                container.appendChild(card);
+            }
+        }
 
-    loadBestsellers();
-});
+        // Call render function on page load
+        window.onload = renderBestsellers;
 
     </script>
     
