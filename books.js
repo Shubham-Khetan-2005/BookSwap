@@ -12,7 +12,7 @@ async function f() {
     // Populate book content for Fiction category
     document.querySelector("#name").innerHTML = "FICTION";  
   } else if (category === "history") {
-    // Populate book content for Non-Fiction category
+    // Populate book content for History category
     document.querySelector("#name").innerHTML = "HISTORY";
   } else if (category === "self-help") {
     // Populate book content for Self-Help category
@@ -154,7 +154,7 @@ function openModal(data) {
   const previewButton = document.getElementById("preview");
   previewButton.addEventListener("click", () => {
     preview(data);
-  });
+});
 
   // Displaying modal
   const modal = document.getElementById("bookModal");

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,25 +28,17 @@
         <div class="relative flex h-16 items-center justify-between" style="height: 6rem;">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button type="button"
+            <button type="button" onclick="mobBar()"
               class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu" aria-expanded="false">
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Open main menu</span>
-              <!--
-                  Icon when menu is closed.
-      
-                  Menu open: "hidden", Menu closed: "block"
-                -->
+              <!-- Icon when menu is closed -->
               <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
-              <!--
-                  Icon when menu is open.
-      
-                  Menu open: "block", Menu closed: "hidden"
-                -->
+              <!-- Icon when menu is open -->
               <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -54,31 +46,33 @@
             </button>
           </div>
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div class="flex flex-shrink-0 items-center">
-              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company">
+            <!-- Logo (hidden on small screens) -->
+            <div class="ml-5 mr-5" id="logoContainer">
+              <img class="h-10 w-auto" src="images/Logo.png" alt="BookNook">
             </div>
+            <!-- Navigation links -->
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="index.html" class="bg-gray-900 text-white rounded-md px-3 py-2 text-lg font-medium"
-                  aria-current="page">Home</a>
-                <a href="browse.html"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">Browse
-                  Books</a>
-                <a href="bestSellers.html"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">Best
-                  Sellers</a>
-                <a href="about.html"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">About
-                  Us</a>
+                <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-lg font-medium"
+                     aria-current="page">Home</a>
+                 <a href="browse.html"
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">Browse
+                   Books</a>
+                   <a href="bestSellers.html"
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">Best
+                   Sellers</a>
+                   <a href="about.html"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium">About Us
+                 </a>
+                   
               </div>
             </div>
           </div>
+          <!-- Profile dropdown (hidden on small screens) -->
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button type="button"
-              class="relative rounded-full bg-gray-800 p-3 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              style="padding: 1rem;">
+              class="hidden sm:block relative rounded-full bg-gray-800 p-4 mr-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">View notifications</span>
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -87,41 +81,27 @@
                   d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
               </svg>
             </button>
-
-            <!-- Profile dropdown -->
-
-            <div class="relative inline-block text-left">
-              <div>
-                <button type="button"
-                  class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                  id="menu-button" aria-expanded="false" aria-haspopup="true">
-                  Your Account
-                  <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clip-rule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-
+            <div
+              class="hidden sm:block relative inline-block text-left">
+              <button type="button"
+                class="relative inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                id="menu-button" aria-expanded="false" aria-haspopup="true">
+                Your Account
+                <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd" />
+                </svg>
+              </button>
               <div
                 class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                 <div class="py-1" role="none">
-                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                   <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                    id="menu-item-0">Name</a>
+                    id="menu-item-0">Shubham Khetan</a>
                   <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                    id="menu-item-1">Number</a>
+                    id="menu-item-1">9876543210</a>
                 </div>
-                <!-- <div class="py-1" role="none">
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Archive</a>
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Move</a>
-                  </div>
-                  <div class="py-1" role="none">
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
-                  </div> -->
                 <div class="py-1" role="none">
                   <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                     id="menu-item-6">Sign Out</a>
@@ -131,8 +111,18 @@
           </div>
         </div>
       </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="sm:hidden bg-gray-800 text-white px-4 py-2 space-y-2" style="display: none;">
+        <a href="index.html" class="block">Home</a>
+        <a href="browse.html" class="block">Browse Books</a>
+        <a href="bestSellers.html" class="block">Best Sellers</a>
+        <a href="about.html" class="block">About Us</a>
       </div>
+    </nav>
   </header>
+  
+  
+  
 
   <section class="hero" style="padding: 4rem; margin-top: 10rem;">
     <center>
@@ -147,7 +137,8 @@
   <section class="authentication" style="padding: 4rem;">
     <center>
       <div id="signin-button">
-        <p class="text-2xl" style="width: 35%; line-height: 2rem;">Here sign-in and Login button will be created</p>
+        <p class="text-2xl" style="width: 35%; line-height: 2rem;"> Immerse yourself in stories that inspire, educate, and transform. <br></p>
+        <p class="text-3xl" style="width: 35%; line-height: 2rem;">  Start your journey with us today!</p>
       </div>
     </center>
   </section>
@@ -156,14 +147,14 @@
   <div class="container mt-5 pr-8 pl-8">
     <!-- Horizontal Tabs -->
     <ul class="nav nav-tabs justify-content-center" style="width: 100%;">
-      <li class="nav-item col-sm-4 text-center">
+      <li class="nav-item col-sm-4 text-center text-xl font-medium">
         <a class="nav-link active border border-white" style="color: #000000;" data-bs-toggle="tab"
           href="#Fiction">Fiction</a>
       </li>
-      <li class="nav-item col-sm-4 text-center">
+      <li class="nav-item col-sm-4 text-center text-xl font-medium">
         <a class="nav-link border border-white" style="color: #000000;" data-bs-toggle="tab" href="#History">History</a>
       </li>
-      <li class="nav-item col-sm-4 text-center">
+      <li class="nav-item col-sm-4 text-center text-xl font-medium">
         <a class="nav-link border border-white" style="color: #000000;" data-bs-toggle="tab"
           href="#SelfHelp">Self-Help</a>
       </li>
@@ -171,6 +162,7 @@
 
     <!-- Tab Content -->
     <div class="tab-content mt-2">
+
       <!-- Fiction Tab Content -->
       <div id="Fiction" class="tab-pane fade show active">
 
@@ -183,7 +175,27 @@
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2" id="fictionContent">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-2" id="fictionContent">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
         </div>
       </div>
 
@@ -243,7 +255,7 @@
         </div>
       </div>
       <div>
-        <button onclick="preview()" id = "preview" class="text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600" style="background-color:#16a34a;">Preview
+        <button id = "preview" class="text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600" style="background-color:#16a34a;">Preview
           </button>
         <button onclick="buyNow()" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600">Buy
           Now</button>
@@ -271,7 +283,6 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <!-- <li><a href="#">Products</a></li> -->
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
@@ -280,9 +291,9 @@
             <div>
                 <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
                 <div class="flex space-x-4">
-                    <a href="#"><img src="images/github.png" alt="GitHub" class="w-8 h-8 mx-2"></a>
-                    <a href="#"><img src="images/insta.png" alt="Instagram" class="w-8 h-8 mx-2"></a>
-                    <a href="#"><img src="images/linkedin.png" alt="Linkedin" class="w-8 h-8 mx-2"></a>
+                    <a href="https://github.com/Shubham-Khetan-2005/BookSwap"><img src="images/github.png" alt="GitHub" class="w-8 h-8 mx-2"></a>
+                    <a href="https://www.instagram.com/shubham.02._"><img src="images/insta.png" alt="Instagram" class="w-8 h-8 mx-2"></a>
+                    <a href="https://www.linkedin.com/in/shubhamkhetan2005/"><img src="images/linkedin.png" alt="Linkedin" class="w-8 h-8 mx-2"></a>
                 </div>
             </div>
         </div>
@@ -294,6 +305,15 @@
 </footer>
 
 
+<script>
+  function mobBar() {
+  const mobileMenu = document.getElementById("mobile-menu");
+  const isMenuVisible = mobileMenu.style.display === "block";
+
+  mobileMenu.style.display = isMenuVisible ? "none" : "block";
+}
+
+</script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -325,68 +345,6 @@
       navLinks.classList.toggle('top-[9%]')
     }
   </script>
-
-  <!-- <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      // Automatically open the "Fiction" category tab when the page loads
-      openTab(event, 'Fiction');
-  });
-
-  // Function to open tab content for different categories
-  function openTab(evt, categoryName) {
-      // Hide all tab content
-      const tabContents = document.querySelectorAll('.tabcontent');
-      tabContents.forEach(content => {
-          content.style.display = 'none';
-      });
-
-      // Deactivate all tab links
-      const tabLinks = document.querySelectorAll('.tablinks');
-      tabLinks.forEach(link => {
-          link.classList.remove('active');
-      });
-
-      // Show the selected category tab content
-      const selectedTab = document.getElementById(categoryName);
-      if (selectedTab) {
-          selectedTab.style.display = 'block';
-
-          // Adjust the height of the category content div based on its images
-          adjustTabContentHeight(selectedTab);
-      }
-
-      // Activate the clicked tab link
-      evt.currentTarget.classList.add('active');
-  }
-
-  // Function to adjust the height of tab content based on its images
-  function adjustTabContentHeight(tabContent) {
-      // Get all images within the tab content
-      const images = tabContent.querySelectorAll('img');
-
-      // Find the maximum height among all images
-      let maxHeight = 0;
-      images.forEach(img => {
-          if (img.offsetHeight > maxHeight) {
-              maxHeight = img.offsetHeight;
-          }
-      });
-
-      // Set the height of the tab content to the maximum image height
-      tabContent.style.height = `${maxHeight}px`;
-  }
-
-  function equalizeTabHeights(tabContent) {
-        // Get the height of the tab content
-        const contentHeight = tabContent.offsetHeight;
-
-        // Set the height of all tab links to match the tab content height
-        const tabLinks = document.querySelectorAll('.tablinks');
-        tabLinks.forEach(link => {
-            link.style.height = `${contentHeight}px`;
-        });
-    }
-</script> -->
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -439,9 +397,28 @@
         }
       });
     });
-
-
   </script>
+
+  <script>
+    function replaceLogo() {
+            const logoContainer = document.getElementById("logoContainer");
+            const screenWidth = window.innerWidth;
+
+            // Check if screen width is between 640 and 850 pixels
+            if (screenWidth >= 640 && screenWidth <= 850) {
+                // Replace the current logo with a new image
+                logoContainer.innerHTML = '<img class="h-auto w-auto" src="images/book.png" alt="BookNook">';
+            } else {
+                // Use the default logo
+                logoContainer.innerHTML = '<img class="h-10 w-auto" src="images/Logo.png" alt="BookNook">';
+            }
+        }
+
+        // Call replaceLogo function initially and on window resize
+        window.addEventListener('load', replaceLogo);
+        window.addEventListener('resize', replaceLogo);
+  </script>
+
 </body>
 <script src="main.js"></script>
 
