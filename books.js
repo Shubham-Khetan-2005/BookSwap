@@ -152,9 +152,12 @@ function openModal(data) {
   modalImage.classList.add("w-full", "h-auto", "rounded-md");
 
   const previewButton = document.getElementById("preview");
-  previewButton.addEventListener("click", () => {
-    preview(data);
-});
+  var new_element = previewButton.cloneNode(true);
+  previewButton.parentNode.replaceChild(new_element, previewButton);
+    new_element.addEventListener("click", () => {
+      preview(data);
+      // console.log("click");
+    });
 
   // Displaying modal
   const modal = document.getElementById("bookModal");

@@ -147,7 +147,7 @@
     <script>
         // Function to fetch bestseller books from New York Times API
         async function fetchBestsellers() {
-            const apiKey = 'o8tZcx8xJvwVUAOASSG042YA82pLZDcA';    // This key is invalid Try it using your own new york times key
+            const apiKey = 'E1Er1JJbhOt53eWaybtFth9LBGEOpAuQ';    // This key is invalid Try it using your own new york times key
             const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`);
             const data = await response.json();
             return data.results.books;

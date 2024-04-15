@@ -158,8 +158,11 @@ function openModal(data) {
   modalImage.classList.add("w-full", "h-auto", "rounded-md");
 
   const previewButton = document.getElementById("preview");
-  previewButton.addEventListener("click", () => {
+var new_element = previewButton.cloneNode(true);
+previewButton.parentNode.replaceChild(new_element, previewButton);
+  new_element.addEventListener("click", () => {
     preview(data);
+    // console.log("click");
   });
 
   // Displaying modal
@@ -168,8 +171,9 @@ function openModal(data) {
 }
 
 function preview(data) {
-  if (data["volumeInfo"]["previewLink"]) {
-    window.open(data["volumeInfo"]["previewLink"], "_blank");
+  // console.log(data.volumeInfo.previewLink);
+  if (data.volumeInfo.previewLink) {
+    window.open(data.volumeInfo.previewLink, "_blank");
   } else {
     alert("Preview not available for this book.");
   }
